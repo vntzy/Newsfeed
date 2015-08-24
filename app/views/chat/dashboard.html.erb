@@ -1,0 +1,15 @@
+
+
+<div id="chat">
+  <% @chat_messages.each do |message| %>
+    <hr>
+    <b><%= message.user.email %></b>
+    <%= message.text %> | <%= message.posted_on %>
+  <% end %>
+</div>
+
+<hr>
+<textarea id="new-message" name="text"></textarea>
+<button id="submit-new-message" onclick="submitMessage($('#new-message').val())">
+  Submit
+</button>

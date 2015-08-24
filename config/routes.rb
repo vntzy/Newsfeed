@@ -5,6 +5,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'chat#dashboard'
+  post 'messages', to: 'messages#create'
+  post 'messages/like', to: 'messages#like'
+  post 'messages/unlike', to: 'messages#unlike'
+  get 'users/profile/:email', to: 'users#profile', as: :profile
+  post 'users/block/:id', to: 'users#block_user', as: :block_user
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

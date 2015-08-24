@@ -9,6 +9,13 @@
 <body>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+<% if current_user != nil %>
+  <nav>
+    <%= link_to('Profile', profile_path(email: current_user.email)) %>
+    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  </nav> 
+  <hr>
+<% end %>
 <%= yield %>
 
 </body>

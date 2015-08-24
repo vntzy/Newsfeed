@@ -35,4 +35,7 @@ class User
   # field :locked_at,       type: Time
 
   has_many :messages
+
+  has_and_belongs_to_many :blocked_users, class_name: 'User', inverse_of: :blocked_by
+  has_and_belongs_to_many :blocked_by, class_name: 'User', inverse_of: :blocked_users
 end

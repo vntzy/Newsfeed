@@ -1,0 +1,9 @@
+<h1>User: <%= @user.email %></h1>
+
+<% if @user != current_user %>
+  <% if current_user.blocked_users.include? @user %>
+    <button>Unblock</button>
+  <% else %>
+    <button>Block</button>
+  <% end %>
+<% end %>

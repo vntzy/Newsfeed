@@ -6,13 +6,16 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 <% if current_user != nil %>
   <nav>
+    <%= link_to('Chat', root_url) %>
     <%= link_to('Profile', profile_path(email: current_user.email)) %>
+    <%= link_to('Rankings', top_users_path) %>
     <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+    <b class="left"><%= current_user.email %></b> 
   </nav> 
   <hr>
 <% end %>

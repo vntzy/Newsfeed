@@ -34,8 +34,16 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
-  has_many :messages
+  has_many :messages, inverse_of: :user
+  has_and_belongs_to_many :liked_messages, class_name: 'Message', inverse_of: :likes
 
   has_and_belongs_to_many :blocked_users, class_name: 'User', inverse_of: :blocked_by
   has_and_belongs_to_many :blocked_by, class_name: 'User', inverse_of: :blocked_users
+
+  attr_accessor :avatar
+  mount_uploader :avatar, AvatarUploader
+
+  def likes
+    messages.reduce(0) {|sum, message| sum + message.likes.size }
+  end
 end

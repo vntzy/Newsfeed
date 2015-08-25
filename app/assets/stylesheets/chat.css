@@ -14,3 +14,16 @@ nav {
 #submit-new-message {
   float: right;
 }
+
+.img-small {
+  width: 50px;
+  height: 50px;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}

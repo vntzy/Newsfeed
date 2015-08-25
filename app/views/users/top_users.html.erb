@@ -1,0 +1,13 @@
+<table>
+  <thead>
+    <th>User</th>
+    <th>Rating</th>
+  </thead>
+  <tbody>
+  <% @top_users.each do |user| %>
+    <tr>
+      <td><%= user[:user].email %></td>
+      <td><%= user[:rating] %></td>
+    </tr>
+  <% end %>
+  </tbody>

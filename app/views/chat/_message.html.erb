@@ -1,0 +1,27 @@
+<div id="<%= message.id %>">
+  <hr>
+  <% if message.user.avatar? %>
+    <%= link_to image_tag(src: message.user.avatar, title: message.user.email), profile_path(email: message.user.email) %>
+  <% else %>
+    <%= link_to image_tag("/User.png", class: "img-small", title: message.user.email), profile_path(email: message.user.email) %>
+  <% end %>
+
+  <%= message.text %>
+  <div class="right"><%= message.posted_on %></div>
+
+  <% if message.likes.include? current_user %>
+    <button class="right unlike-btn" onclick="unlikeMessage('<%= message.id %>')">unlike</button>
+    <button class="right like-btn" onclick="likeMessage('<%= message.id %>')" style="display: none;">
+      like
+    </button>
+  <% else %>
+    <button class="right like-btn" onclick="likeMessage('<%= message.id %>')">like</button>
+    <button class="right unlike-btn" onclick="unlikeMessage('<%= message.id %>')" style="display: none;">
+      unlike
+    </button>
+  <% end %>
+
+  <div class="right">
+    Likes: <span class="number-of-likes"><%= message.likes.size.to_i %></span>
+  </div>
+</div>

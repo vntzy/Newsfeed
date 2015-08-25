@@ -13,7 +13,42 @@ function submitMessage(text) {
          alert("error");
       },
       success: function(data) {
-        $("#chat").replaceWith($(data).filter("#chat"));
       }
   });
+}
+
+function likeMessage(messageId) {
+  $.ajax({
+    type: 'POST',
+    url: '/messages/like/' + messageId,
+    error: function() {
+       alert("error");
+    },
+    success: function(data) {
+      updateLikes(messageId, 1);
+      $("#" + messageId + " .like-btn").hide();
+      $("#" + messageId + " .unlike-btn").show();
+    }
+  });
+}
+
+function unlikeMessage(messageId) {
+  $.ajax({
+    type: 'POST',
+    url: '/messages/unlike/' + messageId,
+    error: function() {
+       alert("error");
+    },
+    success: function(data) {
+      updateLikes(messageId, -1);
+      $("#" + messageId + " .unlike-btn").hide();
+      $("#" + messageId + " .like-btn").show();
+    }
+  });
+}
+
+function updateLikes(messageId, number) {
+  var currentLikes = parseInt($("#" + messageId + " .number-of-likes").text());
+  currentLikes += number;
+  $("#" + messageId + " .number-of-likes").text(currentLikes)
 }

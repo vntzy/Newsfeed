@@ -1,11 +1,5 @@
-
-
 <div id="chat">
-  <% @chat_messages.each do |message| %>
-    <hr>
-    <b><%= message.user.email %></b>
-    <%= message.text %> | <%= message.posted_on %>
-  <% end %>
+ <%= render partial: "message", collection: @chat_messages %>
 </div>
 
 <hr>

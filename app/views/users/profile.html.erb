@@ -1,9 +1,30 @@
 <h1>User: <%= @user.email %></h1>
 
+<% if @user.avatar? %>
+  <%= image_tag src=@user.avatar %>
+<% else %>
+  <%= image_tag("/User.png") %>
+<% end %>
+
+<%= form_tag(change_avatar_path, :html => { :multipart => true }) do %>
+  <%= file_field :user, :avatar %>
+
+  <div class="actions">
+    <%= submit_tag("Upload") %>
+  </div>
+<% end %>
+
+<hr>
 <% if @user != current_user %>
   <% if current_user.blocked_users.include? @user %>
-    <button>Unblock</button>
+    <button id="unblock-btn" onclick="unblockUser('<%= @user.id %>')">Unblock</button>
+    <button id="block-btn" onclick="blockUser('<%= @user.id %>')" style="display: none;">
+      Block
+    </button>
   <% else %>
-    <button>Block</button>
+    <button id="block-btn" onclick="blockUser('<%= @user.id %>')">Block</button>
+    <button id="unblock-btn" onclick="unblockUser('<%= @user.id %>')" style="display: none;">
+      Unblock
+    </button>
   <% end %>
 <% end %>

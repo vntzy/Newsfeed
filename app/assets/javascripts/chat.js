@@ -1,15 +1,20 @@
-// $(".chat.dashboard").ready(function (){
-//   window.setInterval(function() {
-//     $.ajax({
-//         type: 'GET',
-//         url: '/',
-//         error: function() {
-//            alert("error");
-//         },
-//         success: function(data) {
-//           $("#chat").replaceWith($(data).filter("#chat"));
-//           // $("#chat")[0].scrollTop = $("#chat")[0].scrollHeight
-//         }
-//     });
-//   }, 1000);
-// });
+function getOldMessages() {
+  var start = $("#chat").children().length - 1;
+  $.ajax({
+    type: 'GET',
+    url: '/messages/get_old_messages',
+    data: {
+      "start": start
+    },
+    error: function() {
+       alert("error");
+    },
+    success: function(data) {
+      if (data.length == 0) {
+        $("#see-more").hide();
+      } else {
+        $(data).insertAfter("#see-more")
+      }
+    }
+  });
+}

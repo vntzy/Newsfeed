@@ -10,15 +10,11 @@
   <div class="right"><%= message.posted_on %></div>
 
   <% if message.likes.include? current_user %>
-    <button class="right unlike-btn" onclick="unlikeMessage('<%= message.id %>')">unlike</button>
-    <button class="right like-btn" onclick="likeMessage('<%= message.id %>')" style="display: none;">
-      like
-    </button>
+    <button class="right unlike-btn" onclick="unlikeMessage('<%= message.id %>')"></button>
+    <button class="right like-btn" onclick="likeMessage('<%= message.id %>')" style="display: none;"></button>
   <% else %>
-    <button class="right like-btn" onclick="likeMessage('<%= message.id %>')">like</button>
-    <button class="right unlike-btn" onclick="unlikeMessage('<%= message.id %>')" style="display: none;">
-      unlike
-    </button>
+    <button class="right like-btn" onclick="likeMessage('<%= message.id %>')"></button>
+    <button class="right unlike-btn" onclick="unlikeMessage('<%= message.id %>')" style="display: none;"></button>
   <% end %>
 
   <div class="right">

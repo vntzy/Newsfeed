@@ -1,5 +1,6 @@
 <div id="chat">
- <%= render partial: "message", collection: @chat_messages %>
+  <button id="see-more" onclick="getOldMessages()">See more</button>
+  <%= render partial: "message", collection: @chat_messages %>
 </div>
 
 <hr>
